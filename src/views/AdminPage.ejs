@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Page - Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/AdminPage.css">
@@ -17,16 +17,16 @@
   <%- include('./partials/_sidebar.ejs') %>
     <main class="principal">
 
-    
+
 
       <div class="row form">
 
-       
+
         <div class="col-md-3 search-btn">
 
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Pesquise pela Reserva" aria-label="Recipient's username"
-              aria-describedby="button-addon2">
+            <input type="text" class="form-control" placeholder="Pesquise pela Reserva"
+              aria-label="Recipient's username" aria-describedby="button-addon2">
             <button class="btn" type="button" id="button"><i class="ph ph-magnifying-glass"></i></button>
           </div>
 
@@ -42,159 +42,164 @@
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">E-mail</th> 
-                  <th scope="col">Quarto</th> 
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Quarto</th>
                   <th scope="col">Data de CheckIn</th>
                   <th scope="col">Data de CheckOut</th>
                   <th scope="col">Hora de CheckIn</th>
-                  <th scope="col">Hora de CheckOut</th> 
+                  <th scope="col">Hora de CheckOut</th>
                   <th scope="col d-flex align-items-center justify-content-center">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <% let i=0; %>
-                  <%  allReservations.forEach(reservation=>{ %>
+                  <% allReservations.forEach(reservation=>{ %>
                     <% i++ %>
                       <tr>
                         <th scope="row">
                           <%= i%>
                         </th>
-                       
-                            <td class=" d-flex align-items-center justify-content-start">
-                              <div
-                                style="background: url(''); background-position: center; background-repeat: no-repeat; background-size: cover; "
-                                class=" me-3 img-product  h-10 w-10">
-                              </div>
-                              <%=reservation.name %>
-                            </td>
-                           
 
-                              <td>
-                                <%=reservation.email %>
-                              </td> 
-                              <td>
-                                <%=reservation.quarto %>
-                                </td>
-                              <td>
-                                <%=reservation.checkinDate %>
-                              </td>
-                              <td>
-                               <%=reservation.checkoutDate %>
-                              </td>
-                              
-                              <td>
-                                <%=reservation.checkInTime %> H
-                              </td> 
-                              <td>
-                                <%=reservation.checkOutTime %> H
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                  data-bs-target="#confirmRemove-<%= i %>"><i
-                                    class="icon ph-bold ph-trash"></i></button>
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                  data-bs-target="#staticBackdrop-<%= i %>"><i class="icon ph-bold ph-pen"></i></button>
-                                <!-- Modal de edição -->
-                                <div class="modal   fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static"
-                                  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                  aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Reserva</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form class="row g-3" action="/reservation/edit/<%= reservation._id %>"  method="POST">
-                                         
-                                          <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Nome Cliente</label>
-                                            <input type="text" name="name" value="<%= reservation.name %>"
-                                              class="form-control" placeholder="Nome do Produto" id="inputEmail4">
-                                          </div>
-                                          <div class="col-md-6">
-                                                  <label for="email" class="form-label">E-mail</label>
-                                                  <input placeholder="E-mail" value="<%= reservation.email %>"
-                                                    name="process" type="email" class="form-control" id="email">
-                                          </div>
-
-                                          <div class="col-md-4">
-                                            <label for="checkinDate" class="form-label "> Data de CheckIn</label>
-                                            <input type="date"  class="form-control" name="checkinDate" placeholder="Data de CheckIn" name="checkinDate"
-                                              value="<%= reservation.checkinDate %>" class="form-control" id="checkinDate">
-                                          </div>
-
-                                          <div class="col-md-4">
-                                            <label for="checkoutDate" class="form-label ">Data de CheckOut</label>
-                                            <input type="date"  class="form-control" name="checkoutDate" placeholder="Data de CheckOut" name="checkoutDate"
-                                              value="<%= reservation.checkoutDate %>" class="form-control money" id="weigth">
-                                          </div>
-
-                                          <div class="col-md-4">
-                                            <label for="quarto" class="form-label">Quarto</label>
-                                              <select name="quarto"  class="form-control" id="quarto"> 
-                                                <option  selected disabled value="<%= reservation.quarto %>"><%= reservation.quarto %></option>
-                                                <option value="standard">Quarto Individual</option>
-                                                <option value="deluxe">Quarto Casal</option>
-                                                <option value="suite">Quarto Luxo</option>
-                                            </select>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <label for="checkInTime" class="form-label">Hora de CheckIn</label>
-                                            <input type="time" class="form-control" placeholder="Hora de CheckIn" name="checkInTime"
-                                              value="<%= reservation.checkInTime %>" class="form-control" id="checkInTime">
-                                          </div> 
-                                          <div class="col-md-6">
-                                            <label for="checkOutTime" class="form-label">Hora de CheckOut</label>
-                                            <input type="time" class="form-control" placeholder="Hora de CheckOut" name="checkOutTime"
-                                              value="<%= reservation.checkOutTime %>" class="form-control" id="checkOutTime">
-                                          </div>
+                        <td class=" d-flex align-items-center justify-content-start">
+                          <div
+                            style="background: url(''); background-position: center; background-repeat: no-repeat; background-size: cover; "
+                            class=" me-3 img-product  h-10 w-10">
+                          </div>
+                          <%=reservation.name %>
+                        </td>
 
 
-                                          <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">Editar Reserva</button>
-                                          </div>
-                                      </div>
-                                      </form>
-                                      <div class="modal-footer">
+                        <td>
+                          <%=reservation.email %>
+                        </td>
+                        <td>
+                          <%=reservation.quarto %>
+                        </td>
+                        <td>
+                          <%=reservation.checkinDate %>
+                        </td>
+                        <td>
+                          <%=reservation.checkoutDate %>
+                        </td>
 
-                                      </div>
+                        <td>
+                          <%=reservation.checkInTime %> H
+                        </td>
+                        <td>
+                          <%=reservation.checkOutTime %> H
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#confirmRemove-<%= i %>"><i class="icon ph-bold ph-trash"></i></button>
+                          <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop-<%= i %>"><i class="icon ph-bold ph-pen"></i></button>
+                          <!-- Modal de edição -->
+                          <div class="modal   fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Reserva</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form class="row g-3" action="/reservation/edit/<%= reservation._id %>" method="POST">
+
+                                    <div class="col-md-6">
+                                      <label for="inputEmail4" class="form-label">Nome Cliente</label>
+                                      <input type="text" name="name" value="<%= reservation.name %>"
+                                        class="form-control" placeholder="Nome do Produto" id="inputEmail4">
                                     </div>
-                                  </div>
+                                    <div class="col-md-6">
+                                      <label for="email" class="form-label">E-mail</label>
+                                      <input placeholder="E-mail" value="<%= reservation.email %>" name="process"
+                                        type="email" class="form-control" id="email">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                      <label for="checkinDate" class="form-label "> Data de CheckIn</label>
+                                      <input type="date" class="form-control" name="checkinDate"
+                                        placeholder="Data de CheckIn" name="checkinDate"
+                                        value="<%= reservation.checkinDate %>" class="form-control" id="checkinDate">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                      <label for="checkoutDate" class="form-label ">Data de CheckOut</label>
+                                      <input type="date" class="form-control" name="checkoutDate"
+                                        placeholder="Data de CheckOut" name="checkoutDate"
+                                        value="<%= reservation.checkoutDate %>" class="form-control money" id="weigth">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                      <label for="quarto" class="form-label">Quarto</label>
+                                      <select name="quarto" class="form-control" id="quarto">
+                                        <option selected disabled value="<%= reservation.quarto %>">
+                                          <%= reservation.quarto %>
+                                        </option>
+                                        <option value="standard">Quarto Individual</option>
+                                        <option value="deluxe">Quarto Casal</option>
+                                        <option value="suite">Quarto Luxo</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="checkInTime" class="form-label">Hora de CheckIn</label>
+                                      <input type="time" class="form-control" placeholder="Hora de CheckIn"
+                                        name="checkInTime" value="<%= reservation.checkInTime %>" class="form-control"
+                                        id="checkInTime">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="checkOutTime" class="form-label">Hora de CheckOut</label>
+                                      <input type="time" class="form-control" placeholder="Hora de CheckOut"
+                                        name="checkOutTime" value="<%= reservation.checkOutTime %>" class="form-control"
+                                        id="checkOutTime">
+                                    </div>
 
 
-                              </td> 
-                             <!-- Modal de deletar -->
-                             <div class="modal  fade" id="confirmRemove-<%= i %>" data-bs-backdrop="static"
-                              data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmRemoveLabel"
-                              aria-hidden="true">
-                              <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="confirmRemoveLabel">Deletar Reserva</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                      aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form class="row g-3" action="/reservation/delete/<%= reservation.id %>" method="POST">
+                                    <div class="col-12">
+                                      <button type="submit" class="btn btn-primary">Editar Reserva</button>
+                                    </div>
+                                </div>
+                                </form>
+                                <div class="modal-footer">
 
-                                      <div class="col-md-12 d-flex justify-content-center mt-3">
-                                        <h4>Tem certeza que deseja deletar esta Reserva : <%= reservation.name %>? </h4>
-                                      </div>
-
-
-                                      <div class="col-12 d-flex justify-content-center mt-5">
-                                        <button type="button" class="btn btn-dark me-2" data-bs-dismiss="modal"
-                                        aria-label="Close">Cancelar</button>
-                                        <button type="submit" class="btn btn-danger">Remover</button>
-                                      </div>
-
-                                  </div>
-                                  </form>
                                 </div>
                               </div>
                             </div>
+
+
+                        </td>
+                        <!-- Modal de deletar -->
+                        <div class="modal  fade" id="confirmRemove-<%= i %>" data-bs-backdrop="static"
+                          data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmRemoveLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="confirmRemoveLabel">Deletar Reserva</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form class="row g-3" action="/reservation/delete/<%= reservation.id %>" method="POST">
+
+                                  <div class="col-md-12 d-flex justify-content-center mt-3">
+                                    <h4>Tem certeza que deseja deletar esta Reserva : <%= reservation.name %>? </h4>
+                                  </div>
+
+
+                                  <div class="col-12 d-flex justify-content-center mt-5">
+                                    <button type="button" class="btn btn-dark me-2" data-bs-dismiss="modal"
+                                      aria-label="Close">Cancelar</button>
+                                    <button type="submit" class="btn btn-danger">Remover</button>
+                                  </div>
+
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
 
 
                       </tr>
@@ -207,7 +212,7 @@
       </div>
 
     </main>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
       crossorigin="anonymous"></script>
