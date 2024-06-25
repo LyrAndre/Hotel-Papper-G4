@@ -4,59 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/assets/css/AdminPage.css">
   <title>Admin Page - Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/AdminPage.css">
 </head>
 
 <body>
 
   <%- include('./partials/_sidebar.ejs') %>
-
     <main class="principal">
 
-      <div class="row ">
-        <div class="col-md-5">
-          <h4>Material - Vidro</h4>
-        </div>
-
-        <div class="col-md-7 but">
-          <a href="" class="btn btn-primary b1"> <i class="ph ph-arrow-circle-up"></i> Exportar materiais</a>
-          <button type="button" class="btn btn-primary b2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <i
-              class="ph ph-plus-circle"></i> Adicionar material</button>
-        </div>
-
-      </div>
+    
 
       <div class="row form">
 
-        <div class="col-md-4 but">
-
-          <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Filtro:</label>
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>status</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>product</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-        </div>
-
+       
         <div class="col-md-3 search-btn">
 
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Pesquise um produto" aria-label="Recipient's username"
+            <input type="text" class="form-control" placeholder="Pesquise pela Reserva" aria-label="Recipient's username"
               aria-describedby="button-addon2">
             <button class="btn" type="button" id="button"><i class="ph ph-magnifying-glass"></i></button>
           </div>
@@ -72,55 +41,52 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Material</th>
-                  <th scope="col">Categoria</th>
-                  <th scope="col">Preço</th>
-                  <th scope="col">Peso</th>
-                  <th scope="col">Processo</th>
-                  <th scope="col">Marca</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">E-mail</th> 
+                  <th scope="col">Quarto</th> 
+                  <th scope="col">Data de CheckIn</th>
+                  <th scope="col">Data de CheckOut</th>
+                  <th scope="col">Hora de CheckIn</th>
+                  <th scope="col">Hora de CheckOut</th> 
                   <th scope="col d-flex align-items-center justify-content-center">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <% let i=0; %>
-                  <% allMaterials.forEach(materials=>{ %>
+                  <%  allReservations.forEach(reservation=>{ %>
                     <% i++ %>
                       <tr>
                         <th scope="row">
                           <%= i%>
                         </th>
-                        <% if(!materials.materialImage) { %>
-                          <td class=" d-flex align-items-center justify-content-start">
-                            <div
-                              style="background: url('/assets/utilites/product.png '); background-position: center; background-repeat: no-repeat; background-size: cover; "
-                              class=" me-3 img-product  h-10 w-10">
-                            </div>
-                            <%=materials.name %>
-                          </td>
-                          <% } else { %>
+                       
                             <td class=" d-flex align-items-center justify-content-start">
                               <div
-                                style="background: url('/uploads/<%=materials.materialImage %> '); background-position: center; background-repeat: no-repeat; background-size: cover; "
+                                style="background: url(''); background-position: center; background-repeat: no-repeat; background-size: cover; "
                                 class=" me-3 img-product  h-10 w-10">
                               </div>
-                              <%=materials.name %>
+                              <%=reservation.name %>
                             </td>
-                            <% }%>
+                           
 
                               <td>
-                                <%=materials.category %>
+                                <%=reservation.email %>
+                              </td> 
+                              <td>
+                                <%=reservation.quarto %>
+                                </td>
+                              <td>
+                                <%=reservation.checkinDate %>
                               </td>
                               <td>
-                                        R$ <%=materials.price %>
+                               <%=reservation.checkoutDate %>
                               </td>
+                              
                               <td>
-                                        <%=materials.weigth %>
-                              </td>
+                                <%=reservation.checkInTime %> H
+                              </td> 
                               <td>
-                                        <%=materials.process %>
-                              </td>
-                              <td>
-                                <%=materials.brand %>
+                                <%=reservation.checkOutTime %> H
                               </td>
                               <td>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -129,67 +95,65 @@
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                                   data-bs-target="#staticBackdrop-<%= i %>"><i class="icon ph-bold ph-pen"></i></button>
                                 <!-- Modal de edição -->
-                                <div class="modal  fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static"
+                                <div class="modal   fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static"
                                   data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                   aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Produto</h1>
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Reserva</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                           aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                        <form class="row g-3" action="/materiais/edit/<%= materials._id %>" enctype="multipart/form-data" method="POST">
-                                          <div class="profile-pic"> 
-                                            <label class="-label" for="file-<%= i %>">
-                                              <span class="glyphicon glyphicon-camera"></span>
-                                              <span>Change Image</span>
-                                            </label>  
-                                            <input id="file-<%= i %>" name="materialImageEdited" type="file" onchange="loadFileEdit(event,'<%=i %>')" />
-
-                                           <% if (materials.materialImage) { %>
-                                            <img src="/uploads/<%=materials.materialImage%>" id="output-<%= i %>"
-                                            width="200" />
-                                           <% }else { %> 
-                                            <img src="/assets/utilites/product.png" id="output-<%= i %>"
-                                            width="200" />
-
-                                           <% } %>
+                                        <form class="row g-3" action="/reservation/edit/<%= reservation._id %>"  method="POST">
                                          
-                                          </div>
                                           <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Nome do Produto</label>
-                                            <input type="text" name="name" value="<%= materials.name %>"
+                                            <label for="inputEmail4" class="form-label">Nome Cliente</label>
+                                            <input type="text" name="name" value="<%= reservation.name %>"
                                               class="form-control" placeholder="Nome do Produto" id="inputEmail4">
                                           </div>
                                           <div class="col-md-6">
-                                                  <label for="process" class="form-label">Processo</label>
-                                                  <input placeholder="Processo do Produto" value="<%= materials.process %>"
-                                                    name="process" type="text" class="form-control" id="process">
+                                                  <label for="email" class="form-label">E-mail</label>
+                                                  <input placeholder="E-mail" value="<%= reservation.email %>"
+                                                    name="process" type="email" class="form-control" id="email">
                                           </div>
 
                                           <div class="col-md-4">
-                                            <label for="inputPrice" class="form-label ">Preço</label>
-                                            <input type="text" name="price" placeholder="Preço do Produto" name="price"
-                                              value="<%= materials.price %>" class="form-control money" id="price">
+                                            <label for="checkinDate" class="form-label "> Data de CheckIn</label>
+                                            <input type="date"  class="form-control" name="checkinDate" placeholder="Data de CheckIn" name="checkinDate"
+                                              value="<%= reservation.checkinDate %>" class="form-control" id="checkinDate">
                                           </div>
 
                                           <div class="col-md-4">
-                                            <label for="inputWeigth" class="form-label ">Peso</label>
-                                            <input type="text" name="weigth" placeholder="Preço do Produto" name="price"
-                                              value="<%= materials.weigth %>" class="form-control money" id="weigth">
+                                            <label for="checkoutDate" class="form-label ">Data de CheckOut</label>
+                                            <input type="date"  class="form-control" name="checkoutDate" placeholder="Data de CheckOut" name="checkoutDate"
+                                              value="<%= reservation.checkoutDate %>" class="form-control money" id="weigth">
                                           </div>
 
                                           <div class="col-md-4">
-                                            <label for="branding" class="form-label">Marca</label>
-                                            <input type="text" placeholder="Marca do Produto" name="brand"
-                                              value="<%= materials.brand %>" class="form-control" id="brand">
+                                            <label for="quarto" class="form-label">Quarto</label>
+                                              <select name="quarto"  class="form-control" id="quarto"> 
+                                                <option  selected disabled value="<%= reservation.quarto %>"><%= reservation.quarto %></option>
+                                                <option value="standard">Quarto Individual</option>
+                                                <option value="deluxe">Quarto Casal</option>
+                                                <option value="suite">Quarto Luxo</option>
+                                            </select>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="checkInTime" class="form-label">Hora de CheckIn</label>
+                                            <input type="time" class="form-control" placeholder="Hora de CheckIn" name="checkInTime"
+                                              value="<%= reservation.checkInTime %>" class="form-control" id="checkInTime">
+                                          </div> 
+                                          <div class="col-md-6">
+                                            <label for="checkOutTime" class="form-label">Hora de CheckOut</label>
+                                            <input type="time" class="form-control" placeholder="Hora de CheckOut" name="checkOutTime"
+                                              value="<%= reservation.checkOutTime %>" class="form-control" id="checkOutTime">
                                           </div>
 
 
                                           <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">Editar</button>
+                                            <button type="submit" class="btn btn-primary">Editar Reserva</button>
                                           </div>
                                       </div>
                                       </form>
@@ -213,10 +177,10 @@
                                       aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                    <form class="row g-3" action="/materiais/delete/<%= materials.id %>" method="POST">
+                                    <form class="row g-3" action="/reservation/delete/<%= reservation.id %>" method="POST">
 
                                       <div class="col-md-12 d-flex justify-content-center mt-3">
-                                        <h4>Tem certeza que deseja deletar este produto: <%= materials.name %>? </h4>
+                                        <h4>Tem certeza que deseja deletar este produto: <%= reservation.name %>? </h4>
                                       </div>
 
 
@@ -243,67 +207,7 @@
       </div>
 
     </main>
-    <!-- Modal de cadastro -->
-    <div class="modal  fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Produto</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form class="row g-3" action="/materiais/create/" method="POST" enctype="multipart/form-data">
-              <div class="profile-pic">
-                <label class="-label" for="file">
-                  <span class="glyphicon glyphicon-camera"></span>
-                  <span>Change Image</span>
-                </label>
-                <input id="file" name="materialImage" type="file" onchange="loadFile(event)" />
-                <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg" id="output"
-                  width="200" />
-              </div>
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Nome do Material</label>
-                <input type="text" name="name" class="form-control" placeholder="Nome do Material" id="inputEmail4">
-              </div>
-
-              <div class="col-md-6">
-                <label for="inputPrice" class="form-label ">Preço</label>
-                <input type="text" name="price" placeholder="Preço do Material" name="price" class="form-control money"
-                  id="price">
-              </div>
-
-              <div class="col-md-4">
-                <label for="inputProcess" class="form-label ">Processo</label>
-                <input type="text" name="process" placeholder="Processo do Material" name="process" class="form-control"
-                  id="process">
-              </div>
-
-              <div class="col-md-4">
-                <label for="inputWeigth" class="form-label ">Peso</label>
-                <input type="text" name="weigth" placeholder="Peso do Material" name="weigth" class="form-control money"
-                  id="weigth">
-              </div>
-
-              <div class="col-md-4">
-                <label for="branding" class="form-label">Marca</label>
-                <input type="text" placeholder="Marca do Material" name="brand" class="form-control" id="branding">
-              </div>
-
-              <input name="category" type="hidden" class="form-control" id="category" value="Vidro">
-
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-              </div>
-          </div>
-          </form>
-          <div class="modal-footer">
-
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
       crossorigin="anonymous"></script>
