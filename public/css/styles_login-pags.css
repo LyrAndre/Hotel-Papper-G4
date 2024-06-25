@@ -20,53 +20,53 @@ body {
 }
 
 .container {
-    background-image: linear-gradient(to left, rgba(209, 5, 5, 0.397), rgba(2, 0, 139, 0.329), rgba(240, 79, 138, 0.349), rgba(243, 123, 112, 0.479), rgba(245, 173, 85, 0.438));
-    color: rgb(12, 12, 54), rgba(255, 255, 255, 0.8);
+    background-image: linear-gradient(to left, rgba(209, 5, 5, 0.397), rgba(2, 0, 139, 0.329), rgba(240, 79, 138, 0.349), rgba(243, 123, 112, 0.479), rgba(245, 173, 85, 0.438)) !important;
+    color: rgb(12, 12, 54), rgba(255, 255, 255, 0.8) !important;
     /* Fundo branco semi-transparente */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 h2 {
-    margin-bottom: 30px;
-    color: #000000;
+    margin-bottom: 30px !important;
+    color: #000000 !important;
 }
 
 .btn-primary {
-    background-color: #343a40;
-    border-color: #343a40;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
 }
 
 .btn-primary:hover {
-    background-color: #495057;
-    border-color: #495057;
+    background-color: #495057 !important;
+    border-color: #495057 !important;
 }
 
 
 
 
 h1 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .form-label, .form-control {
-    color: #ffffff;
+    color: #ffffff ;
 }
 
 .btn {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    max-width: 300px;
-    margin: 0 auto;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 90% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
     /* Centraliza o grupo de botões horizontalmente */
-    margin-top: 5px;
-    padding: 5px 5px;
+    margin-top: 5px !important;
+    padding: 5px 5px !important;
     /* Ajuste o padding do botão de reservar */
-    font-size: 20px;
+    font-size: 20px !important;
     /* Ajuste o tamanho da fonte do botão reservar */
     background-image: linear-gradient(to left, rgba(209, 5, 5, 0.548), rgba(2, 0, 139, 0.788), rgb(240, 79, 139), rgb(243, 124, 112), rgb(245, 172, 85));
     color: rgb(12, 12, 54);

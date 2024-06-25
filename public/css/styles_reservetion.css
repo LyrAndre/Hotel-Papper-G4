@@ -23,12 +23,12 @@ body {
 
 
 h1 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 
 .form-label, .form-control {
-    color: #ffffff;
+    color: #ffffff ;
 }
 
 .btn-primary, .btn-secondary {
@@ -58,12 +58,12 @@ h1 {
 }
 
 .nav-link {
-    color: white;
-    font-size: 28px;
+    color: white !important;
+    font-size: 28px !important;
 }
 
 .nav-ite {
-    color: rgb(11, 143, 138);
+    color: rgb(11, 143, 138) !important;
 }
 
 
@@ -101,29 +101,29 @@ body {
     }
 
     nav {
-        display: none;
+        display: none !important;
     }
 
     .menu-toggle {
-        display: block; 
+        display: block !important; 
     }
 
     
     .menu-toggle:checked + nav {
-        display: block;
+        display: block !important;
     }
 
     
     h1 {
-        font-size: 24px;
+        font-size: 24px !important;
     }
 
     p {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 
     
     .hidden-mobile {
-        display: none;
+        display: none !important;
     }
 }
