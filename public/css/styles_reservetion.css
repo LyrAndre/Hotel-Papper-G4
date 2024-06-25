@@ -23,7 +23,7 @@ body {
 
 
 h1 {
-    color: #ffffff !important;
+    color: #ffffff  !important;
 }
 
 
@@ -101,29 +101,29 @@ body {
     }
 
     nav {
-        display: none !important;
+        display: none ;
     }
 
     .menu-toggle {
-        display: block !important; 
+        display: block ; 
     }
 
     
     .menu-toggle:checked + nav {
-        display: block !important;
+        display: block ;
     }
 
     
     h1 {
-        font-size: 24px !important;
+        font-size: 24px ;
     }
 
     p {
-        font-size: 16px !important;
+        font-size: 16px ;
     }
 
     
     .hidden-mobile {
-        display: none !important;
+        display: none ;
     }
 }
