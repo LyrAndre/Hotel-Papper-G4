@@ -1,3 +1,4 @@
+
 exports.indexHome = (req,res) =>{
     res.render("Home"); 
     console.log(req.session.user) 

@@ -1,3 +1,4 @@
+
 //  TOASTS 
 function closeToast(event) {
 	let toastClose = event.target;

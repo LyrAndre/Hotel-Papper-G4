@@ -1,3 +1,4 @@
+
 const SignUpAndLogin = require ("../models/SignUpAndLoginModel"); 
 exports.indexLogin = (req,res) =>{
     res.render("Login"); 

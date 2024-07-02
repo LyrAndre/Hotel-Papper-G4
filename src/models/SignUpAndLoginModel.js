@@ -4,6 +4,7 @@ const LoginAndSignUpSchema  = mongoose.Schema({
     email:{type:String, required:true}, 
     password: {type:String, required:true} 
 })  
+
 const LoginAndSignUpModel = mongoose.model("Account",LoginAndSignUpSchema); 
 
 class SignUpAndLogin {
