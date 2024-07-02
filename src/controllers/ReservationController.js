@@ -1,4 +1,3 @@
-
 const Reservation = require("../models/ReservationModel")
 exports.reservationIndex = (req,res) =>{
     res.render("Reservation")
